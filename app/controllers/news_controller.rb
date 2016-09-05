@@ -11,8 +11,8 @@ class NewsController < ApplicationController
     newsReader.searchFor 'github' #filter items for github
     newsReader.searchOnFields 'url' #apply filter on the url field only
     newsReader.minimumAuthorPoints 1000 #author must have at least 1000 points to be listed
-    newsReader.itemsPerPage params['count'] #get number of items to be displayed from URL parameter
-    newsReader.page params['pageNum'] #get page number from URL parameter
+    newsReader.itemsPerPage params[:count] #get number of items to be displayed from URL parameter
+    newsReader.page params[:pageNum] #get page number from URL parameter
     news = newsReader.read
 
     @listings = {}
