@@ -7,6 +7,8 @@ class NewsService
   @minAuthorPoints = 0
   @searchFields = :nil
   @newestFirst = :false
+  @pageNumber = 1
+  @hitsPerPage = 10
 
   def initialize (newsHostUrl)
     @newsUrl = newsHostUrl
@@ -20,7 +22,7 @@ class NewsService
     @searchFor = term
   end
 
-  def setMinimumAuthorPoints (points)
+  def minimumAuthorPoints (points)
     @minAuthorPoints = points
   end
 
@@ -30,6 +32,14 @@ class NewsService
 
   def newestFirst (truth)
     @newestFirst = truth
+  end
+
+  def page (pageNumber)
+    @pageNumber = pageNumber
+  end
+
+  def itemsPerPage (count)
+    @hitsPerPage = count
   end
 
   def read
@@ -67,6 +77,8 @@ class NewsService
     constructedUrl += '&restrictSearchableAttributes=' + @searchFields if @searchFields
 
     constructedUrl += "&numericFilters=points>#@minAuthorPoints" if @minAuthorPoints
+
+    constructedUrl += "&page=#@pageNumber&hitsPerPage=#@hitsPerPage"
 
     return constructedUrl
   end

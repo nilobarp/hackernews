@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="nilobarp">
+  <title>Hacker News Feed</title>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-custom navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header page-scroll">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        Menu <i class="fa fa-bars"></i>
+      </button>
+      <a class="navbar-brand" href="<%= url_for :root %>">HN Home</a>
+    </div>
+  </div>
+</nav>
+<div class="container news-listings">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <div class="post-link">
+        <a href="<%= url_for :newsList %>">
+          <h2 style="text-align: center;">
+            News listings
+          </h2>
+        </a>
+      </div>
+      <% @listings.each do |key, list| %>
+        <hr/>
+        <div class="post-preview">
+          <a href="<%= list[:url] %>">
+            <h2 class="post-title">
+              <%= list[:title] %>
+            </h2>
+          </a>
+          <p class="post-meta">Posted by <%= list[:author] %> (<%= list[:points] %>) on <%= list[:date] %></p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <nav aria-label="...">
+    <ul class="pager">
+      <% if @prevPageLink %>
+        <li><a href="<%= @prevPageLink %>">Previous</a></li>
+      <% end %>
+      <% if @nextPageLink %>
+          <li><a href="<%= @nextPageLink %>">Next</a></li>
+      <% end %>
+    </ul>
+  </nav>
+</div>
+</body>
+</html>

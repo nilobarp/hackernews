@@ -1,1 +1,42 @@
-<h5>HN Home</h5>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="nilobarp">
+    <title>Hacker News Feed</title>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+    <%= csrf_meta_tag %>
+  </head>
+<body>
+  <header class="intro-header" style="background-image: url(<%= image_path 'hex-wallpaper' %>)">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+          <div class="site-heading">
+            <h1>Hacker News</h1>
+            <hr class="small">
+            <span class="subheading">Simple news reader</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-link">
+          <a href="<%= newsList_path ({:pageNum => 0, :count => 5}) %>">
+            <h2 style="text-align: center;">
+              Continue to News
+            </h2>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
