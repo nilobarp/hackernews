@@ -20,10 +20,12 @@ class NewsServiceTest < ActionController::TestCase
     newsReader = NewsService.new hostUrl
     newsReader.searchOnFields 'url'
     newsReader.searchFor 'github'
-    newsReader.setMinimumAuthorPoints 500
+    newsReader.minimumAuthorPoints 500
     newsReader.newestFirst true
+    newsReader.itemsPerPage 5
+    newsReader.page 1
 
-    expectedUrl = hostUrl + '/search_by_date?query=github&restrictSearchableAttributes=url&numericFilters=points>500'
+    expectedUrl = hostUrl + '/search_by_date?query=github&restrictSearchableAttributes=url&numericFilters=points>500&page=1&hitsPerPage=5'
     builtUrl = newsReader.buildNewsUrl
 
     assert_equal expectedUrl, builtUrl
@@ -33,7 +35,7 @@ class NewsServiceTest < ActionController::TestCase
     hostUrl = 'http://example.com'
     newsReader = NewsService.new hostUrl
     newsReader.searchOnFields 'url'
-    newsReader.setMinimumAuthorPoints 500
+    newsReader.minimumAuthorPoints 500
     newsReader.newestFirst true
 
     assert_raises(Exception) { newsReader.buildNewsUrl }
@@ -44,10 +46,12 @@ class NewsServiceTest < ActionController::TestCase
     newsReader = NewsService.new hostUrl
     newsReader.searchOnFields 'url'
     newsReader.searchFor 'github'
-    newsReader.setMinimumAuthorPoints 500
+    newsReader.minimumAuthorPoints 500
     newsReader.newestFirst true
+    newsReader.itemsPerPage 5
+    newsReader.page 1
 
-    expectedUrl = hostUrl + '/search_by_date?query=github&restrictSearchableAttributes=url&numericFilters=points>500'
+    expectedUrl = hostUrl + '/search_by_date?query=github&restrictSearchableAttributes=url&numericFilters=points>500&page=1&hitsPerPage=5'
     stubbedResponse = '{"key": "value"}'
 
     stub_request(:any, expectedUrl)
