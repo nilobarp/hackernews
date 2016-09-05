@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'home#index'
-  get 'news' => 'news#index', as: :newsList
+  get 'news/page/:pageNum/list/:count' => 'news#index', as: :newsList
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
