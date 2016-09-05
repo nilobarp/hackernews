@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/nilobarp/hackernews.svg?branch=master)](https://travis-ci.org/nilobarp/hackernews)
+
 #Hacker News Listing
 ###Simple news listing from Hacker News
 
